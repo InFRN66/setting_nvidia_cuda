@@ -1,0 +1,22 @@
+# if there are drivers installed with dpkg 
+dpkg -l | grep nvidia*
+dpkg -l | grep cuda*
+
+# remove some of installed drivers 
+sudo apt-get autoremove --purge nvidia-*
+sudo apt-get autoremove --purge cuda-*
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get autoremove
+
+# check the linux-kernel list installed for now
+dpkg --get-selections | grep linux-
+
+# remove linux-kernel
+sudo apt-get autoremove --purge linux-headers-~~
+
+# install linux-kernel
+sudo apt-get install linux-image-~~
+sudo apt-get install linux-headers-~~
+
+
